@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string levelToLoad;
+    public bool locked = true;
+    public int doorCode = 0;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        print(other.gameObject.name);
+        if(other.gameObject.CompareTag("Player"))
+        {
+            if(!locked)
+            {
+                SceneManager.LoadScene(levelToLoad);
+            }
+            else if (PublicVars.hasKey[doorCode])
+            {
+                PublicVars.hasKey[doorCode] = false;
+                SceneManager.LoadScene(levelToLoad);
+            }
+        }
     }
 }

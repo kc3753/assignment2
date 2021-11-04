@@ -7,9 +7,9 @@ public class Player : MonoBehaviour
 {
     NavMeshAgent _navMeshAgent;
     Camera mainCam;
-    public Transform spawnPoint;
-    public GameObject bulletPrefab;
-    float startTime;
+    //public Transform spawnPoint;
+    //public GameObject bulletPrefab;
+    //float startTime;
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -17,7 +17,16 @@ public class Player : MonoBehaviour
     }
 
     void Update()
-    {
+    {   
+        if (Input.GetMouseButtonUp(0))
+        {
+            RaycastHit hit;
+            if(Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition),out hit, 200))
+            {
+                _navMeshAgent.destination = hit.point;
+            }
+        }
+        /*
         if(Input.GetMouseButtonDown(0))
         {
             startTime = Time.time;
@@ -43,15 +52,19 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        */
     }
 
-    void OnTriggerEnter (Collider other)
+    private void OnTriggerEnter (Collider other)
     {
         print(other.gameObject.name);
-        if (other.gameObject.CompareTag("Key"))
+        for(int i = 0; i< PublicVars.hasKey.Length; i++)
         {
-            Destroy(other.gameObject);
-            PublicVars.hasKey = true;
+            if (other.gameObject.CompareTag("Key" + i))
+            {
+                Destroy(other.gameObject);
+                PublicVars.hasKey[i] = true;
+            }
         }
     }
 }
