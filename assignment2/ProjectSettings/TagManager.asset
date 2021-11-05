@@ -7,6 +7,8 @@ TagManager:
   - Key
   - Key1
   - Key0
+  - Player1
+  - Player0
   layers:
   - Default
   - TransparentFX
