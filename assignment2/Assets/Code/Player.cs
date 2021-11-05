@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         mainCam = Camera.main;
-        PublicVars.playerNum = 0;
     }
     void Update()
     {   
