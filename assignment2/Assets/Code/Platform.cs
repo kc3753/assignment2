@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Platform : MonoBehaviour
 {
     public string levelToLoad;
     public bool person0 = false;
     public bool person1 = false;
+    TransitionManager _transitionManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +21,7 @@ public class Platform : MonoBehaviour
         }
         if(person0 && person1)
         {
-            SceneManager.LoadScene(levelToLoad);
+            _transitionManager.LoadScene(levelToLoad);
         }
     }
 }
