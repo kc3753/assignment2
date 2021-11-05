@@ -15,24 +15,17 @@ public class Player : MonoBehaviour
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         mainCam = Camera.main;
+        PublicVars.playerNum = 0;
     }
-
     void Update()
-    {   if(num == PublicVars.playerNum){
+    {   
+        if(num == PublicVars.playerNum){
             if (Input.GetMouseButtonUp(0))
             {
                 RaycastHit hit;
                 if(Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition),out hit, 200))
                 {
                     _navMeshAgent.destination = hit.point;
-                }
-            }
-            if(Input.GetKeyDown("space")){
-                if(PublicVars.playerNum == 0){
-                    PublicVars.playerNum = 1;
-                }
-                else{
-                    PublicVars.playerNum = 0;
                 }
             }
         }
