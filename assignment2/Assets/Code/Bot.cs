@@ -11,7 +11,7 @@ public class Bot : MonoBehaviour
     void Start()
     {
          _navMeshAgent = GetComponent<NavMeshAgent>();
-         player = GameObject.FindGameObjectWithTag("Player");
+         player = GameObject.FindGameObjectWithTag("Player1");
          StartCoroutine(LookForPlayer());
     }
     IEnumerator LookForPlayer()
