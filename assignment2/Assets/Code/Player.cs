@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
+    public int num;
     NavMeshAgent _navMeshAgent;
     Camera mainCam;
     //public Transform spawnPoint;
@@ -17,13 +18,22 @@ public class Player : MonoBehaviour
     }
 
     void Update()
-    {   
-        if (Input.GetMouseButtonUp(0))
-        {
-            RaycastHit hit;
-            if(Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition),out hit, 200))
+    {   if(num == PublicVars.playerNum){
+            if (Input.GetMouseButtonUp(0))
             {
-                _navMeshAgent.destination = hit.point;
+                RaycastHit hit;
+                if(Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition),out hit, 200))
+                {
+                    _navMeshAgent.destination = hit.point;
+                }
+            }
+            if(Input.GetKeyDown("space")){
+                if(PublicVars.playerNum == 0){
+                    PublicVars.playerNum = 1;
+                }
+                else{
+                    PublicVars.playerNum = 0;
+                }
             }
         }
         /*
@@ -56,14 +66,16 @@ public class Player : MonoBehaviour
     }
 
     private void OnTriggerEnter (Collider other)
-    {
-        print(other.gameObject.name);
-        for(int i = 0; i< PublicVars.hasKey.Length; i++)
-        {
-            if (other.gameObject.CompareTag("Key" + i))
+    {   
+        if(num == PublicVars.playerNum){
+            print(other.gameObject.name);
+            for(int i = 0; i< PublicVars.hasKey.Length; i++)
             {
-                Destroy(other.gameObject);
-                PublicVars.hasKey[i] = true;
+                if (other.gameObject.CompareTag("Key" + i))
+                {
+                    Destroy(other.gameObject);
+                    PublicVars.hasKey[i] = true;
+                }
             }
         }
     }
