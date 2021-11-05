@@ -5,23 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
-    public string levelToLoad;
-    public bool locked = true;
-    public int doorCode = 0;
+    
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.gameObject.name);
-        if(other.gameObject.CompareTag("Player"))
+        
+        if(other.gameObject.CompareTag("Player0") || other.gameObject.CompareTag("Player1") )
         {
-            if(!locked)
+            if(PublicVars.hasKey==0)
             {
-                SceneManager.LoadScene(levelToLoad);
+                return;
             }
-            else if (PublicVars.hasKey[doorCode])
+            else 
             {
-                PublicVars.hasKey[doorCode] = false;
-                SceneManager.LoadScene(levelToLoad);
+                PublicVars.hasKey--;
+                Destroy(gameObject);
             }
         }
     }

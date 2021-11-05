@@ -6,20 +6,20 @@ using UnityEngine.SceneManagement;
 public class Platform : MonoBehaviour
 {
     public string levelToLoad;
-    public bool locked = true;
-    public int person = 0;
+    public bool person0 = false;
+    public bool person1 = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        print("colide");
+        
         if(other.gameObject.CompareTag("Player0"))
         {
-            person++;   
+            person0 = true ;   
         }
         else if (other.gameObject.CompareTag("Player1")){
-            person++;
+            person1 = true;
         }
-        if(person==2)
+        if(person0 && person1)
         {
             SceneManager.LoadScene(levelToLoad);
         }

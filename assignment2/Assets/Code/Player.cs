@@ -59,16 +59,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter (Collider other)
     {   
-        if(num == PublicVars.playerNum){
-            print(other.gameObject.name);
-            for(int i = 0; i< PublicVars.hasKey.Length; i++)
-            {
-                if (other.gameObject.CompareTag("Key" + i))
-                {
-                    Destroy(other.gameObject);
-                    PublicVars.hasKey[i] = true;
-                }
-            }
+        if (other.gameObject.CompareTag("Key"))
+        {
+                Destroy(other.gameObject);
+                PublicVars.hasKey++;
+                print(PublicVars.hasKey);
         }
+            
+        
     }
 }
