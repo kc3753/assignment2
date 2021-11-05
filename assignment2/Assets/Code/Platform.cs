@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class Platform : MonoBehaviour
+{
+    public string levelToLoad;
+    public bool locked = true;
+    public int person = 0;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print("colide");
+        if(other.gameObject.CompareTag("Player0"))
+        {
+            person++;   
+        }
+        else if (other.gameObject.CompareTag("Player1")){
+            person++;
+        }
+        if(person==2)
+        {
+            SceneManager.LoadScene(levelToLoad);
+        }
+    }
+}
