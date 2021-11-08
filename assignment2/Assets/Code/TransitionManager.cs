@@ -39,8 +39,8 @@ public class TransitionManager : MonoBehaviour
         float t = 0;
         while ( t < 1)
         {
-            fadeIn.volume = Math.f.SmoothStep(0,maxVol,t);
-            fadeOut.volume = Math.f.SmoothStep(maxVol,0,t);
+            fadeIn.volume = Mathf.SmoothStep(0,maxVol,t);
+            fadeOut.volume = Mathf.SmoothStep(maxVol,0,t);
             t += Time.deltaTime * fadeSpeed;
             yield return null;
         }
@@ -50,7 +50,7 @@ public class TransitionManager : MonoBehaviour
     private IEnumerator FadeOut()
     {
         yield return new WaitForSeconds(.2f);
-        FadeImg.CrossFadeAlpha(0,1,true);
+        fadeImg.CrossFadeAlpha(0,1,true);
         yield return new WaitForSeconds(1);
         fadeImg.gameObject.SetActive(false);
     }
@@ -62,7 +62,7 @@ public class TransitionManager : MonoBehaviour
     {
         fadeImg.gameObject.SetActive(true);
         fadeImg.canvasRenderer.SetAlpha(0);
-        FadeImg.CrossFadeAlpha(1,1,true);
+        fadeImg.CrossFadeAlpha(1,1,true);
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(sceneName);
     }
