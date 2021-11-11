@@ -5,7 +5,13 @@ using UnityEngine;
 public class Button : MonoBehaviour
 {
 
-    public GameObject activate;
+    //public GameObject activated;
+    public GameObject buttonGameObjectLink;
+    activatable buttonLink; 
+
+    void Start(){
+        buttonLink = buttonGameObjectLink.GetComponent<activatable>();
+    }
     private void OnTriggerEnter(Collider other)
         {
             
@@ -13,7 +19,8 @@ public class Button : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y - 0.05f, transform.position.z);
                 transform.GetChild(0).GetComponent<Light>().enabled = true;
-                activate.SetActive(false);
+                buttonLink.activate();
+                //activated.SetActive(false);
             }
         }
 
@@ -23,7 +30,8 @@ public class Button : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y + 0.05f, transform.position.z);
                 transform.GetChild(0).GetComponent<Light>().enabled = false;
-                activate.SetActive(true);
+                buttonLink.deactivate();
+                //activated.SetActive(true);
             }
         }
 }
