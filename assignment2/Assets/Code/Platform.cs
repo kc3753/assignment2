@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Platform : MonoBehaviour
 {
@@ -21,7 +22,8 @@ public class Platform : MonoBehaviour
         }
         if(person0 && person1)
         {
-            _transitionManager.LoadScene(levelToLoad);
+            //_transitionManager.LoadScene(levelToLoad);
+            SceneManager.LoadScene(levelToLoad);
         }
     }
 }
