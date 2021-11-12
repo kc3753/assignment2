@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TransitionManager : MonoBehaviour
 {
-    float maxVol = .3f;
+    float maxVol = .2f;
     public AudioClip[] clips;
     private float fadeSpeed = .2f;
     private AudioSource[] audioSources;
@@ -28,7 +28,7 @@ public class TransitionManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         StopAllCoroutines();
-        StartCoroutine(FadeMusic(audioSources[trackIndex],audioSources[trackIndex = 1 - trackIndex], scene.buildIndex));
+        //StartCoroutine(FadeMusic(audioSources[trackIndex],audioSources[trackIndex = 1 - trackIndex], scene.buildIndex));
         StartCoroutine(FadeOut());
     }
     private IEnumerator FadeMusic(AudioSource fadeIn, AudioSource fadeOut, int buildIndex)

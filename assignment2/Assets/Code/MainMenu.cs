@@ -14,4 +14,8 @@ public class MainMenu : MonoBehaviour
     {
         _transitionManager.LoadScene("Level1");
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
