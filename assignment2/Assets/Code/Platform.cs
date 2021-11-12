@@ -10,6 +10,10 @@ public class Platform : MonoBehaviour
     public bool person1 = false;
     TransitionManager _transitionManager;
 
+    private void Start()
+    {
+        _transitionManager = FindObjectOfType<TransitionManager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         
@@ -23,7 +27,7 @@ public class Platform : MonoBehaviour
         if(person0 && person1)
         {
             //_transitionManager.LoadScene(levelToLoad);
-            SceneManager.LoadScene(levelToLoad);
+            _transitionManager.LoadScene(levelToLoad);
         }
     }
 }

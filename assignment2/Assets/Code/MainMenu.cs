@@ -18,4 +18,8 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+    public void reStartGame()
+    {
+        _transitionManager.LoadScene("GameStart");
+    }
 }
